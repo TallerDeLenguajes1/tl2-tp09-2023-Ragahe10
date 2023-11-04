@@ -97,7 +97,7 @@ public class TableroRepository : ITableroRepository {
     public void DeleteTablero(int idTablero){
         using(SQLiteConnection connection = new SQLiteConnection(cadenaConexion)){
             SQLiteCommand command = connection.CreateCommand();
-            command.CommandText = @"DELETE FROM Tablero WHERE id = @idTablero;";
+            command.CommandText = @"DELETE FROM Tablero WHERE id_tablero = @idTablero;";
             command.Parameters.Add(new SQLiteParameter("@idTablero",idTablero));
             connection.Open();
             command.ExecuteNonQuery();
