@@ -13,14 +13,14 @@ public class TableroController : ControllerBase
         _logger = logger;
         tableroRepository = new TableroRepository();
     }
-    [HttpPost ("addTablero")]
+    [HttpPost]
     public ActionResult AddTablero(Tablero tablero){
         tableroRepository.AddTablero(tablero);
         return Ok();
     }
 
-    [HttpGet ("Tableros")]
-    public ActionResult<List<Usuario>> GetAllTableros(){
+    [HttpGet]
+    public ActionResult<List<Tablero>> GetAllTableros(){
         var tableros = tableroRepository.GetAllTableros();
         return Ok(tableros);
     }

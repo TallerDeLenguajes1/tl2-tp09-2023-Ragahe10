@@ -13,23 +13,23 @@ public class UsuarioController : ControllerBase
         _logger = logger;
         usuarioRepository = new UsuarioRepository();
     }
-    [HttpPost ("AddUsuario")]
+    [HttpPost]
     public ActionResult AddUsuario(Usuario usuario){
         usuarioRepository.AddUsuario(usuario);
         return Ok();
     }
 
-    [HttpGet ("Usuario")]
+    [HttpGet]
     public ActionResult<List<Usuario>> GetAllUsuarios(){
         var usuarios = usuarioRepository.GetAllUsuarios();
         return Ok(usuarios);
     }
-    [HttpGet ("Usuario/{id}")]
+    [HttpGet ("{id}")]
     public ActionResult<Usuario> GetUsuario(int id){
         var usuario = usuarioRepository.GetUsuario(id);
         return Ok(usuario);
     }
-    [HttpPut ("Usuario/{id}/Nombre")]
+    [HttpPut ("{id}/Nombre")]
     public ActionResult UpdateUSuario(int id, Usuario usuario){
         usuarioRepository.UpdateUsuario(id,usuario);
         return Ok();

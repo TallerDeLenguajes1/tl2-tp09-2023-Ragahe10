@@ -9,12 +9,13 @@ namespace tl2_tp09_2023_Ragahe10;
 public class TableroRepository : ITableroRepository {
     private string cadenaConexion = "Data Source=DataBase/kanban.db;Cache=Shared";
     public void AddTablero(Tablero tablero){
-        var query = @"INSERT INTO Tablero (nombre, descripcion) VALUES (@nombreT, @descripcion);";
+        var query = @"INSERT INTO Tablero (id_usuario_propietario,nombre,descripcion) VALUES (@idUsuario, @nombreT, @descripcion);";
         using(SQLiteConnection connection = new SQLiteConnection(cadenaConexion)){
-            connection.Open();
             var command = new SQLiteCommand(query,connection);
-            command.Parameters.Add(new SQLiteParameter("@nombre", tablero.Nombre));
+            command.Parameters.Add(new SQLiteParameter("@idUsuario", tablero.IdUsuarioPropietario));
+            command.Parameters.Add(new SQLiteParameter("@nombreT", tablero.Nombre));
             command.Parameters.Add(new SQLiteParameter("@descripcion", tablero.Descripcion));
+            connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
         }
