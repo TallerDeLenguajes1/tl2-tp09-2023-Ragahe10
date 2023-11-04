@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace tl2_tp09_2023_Ragahe10.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("Api/[controller]")]
 public class UsuarioController : ControllerBase
 {
     private readonly ILogger<UsuarioController> _logger;
@@ -29,7 +29,7 @@ public class UsuarioController : ControllerBase
         var usuario = usuarioRepository.GetUsuario(id);
         return Ok(usuario);
     }
-    [HttpPut ("Usuario/{id}")]
+    [HttpPut ("Usuario/{id}/Nombre")]
     public ActionResult UpdateUSuario(int id, Usuario usuario){
         usuarioRepository.UpdateUsuario(id,usuario);
         return Ok();
