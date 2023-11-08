@@ -34,19 +34,20 @@ public class TareaController : ControllerBase
         return Ok();
     }
     [HttpGet("{estado}")]
-    public ActionResult<List<Usuario>> GetAllTareasByEstado(EstadoTarea estado){
-        var usuarios = tareaRepository.GetAllTareasByEstado(estado);
-        return Ok(usuarios);
+    public ActionResult<int> GetAllTareasByEstado(EstadoTarea estado){
+        var tareas = tareaRepository.GetAllTareas();
+        int cantidad = tareas.Count(t=>t.Estado==estado);
+        return Ok(cantidad);
     }
-    [HttpGet("Tablero/{id}")]
+    [HttpGet("Usuario/{id}")]
     public ActionResult<List<Usuario>> GetAllTareasByUsuario(int id){
-        var usuarios = tareaRepository.GetAllTareasByUsuario(id);
-        return Ok(usuarios);
+        var tareas = tareaRepository.GetAllTareas().Where(t=>t.IdUsuarioAsignado==id);
+        return Ok(tareas);
     }
     [HttpGet("Tablero/{id}")]
     public ActionResult<List<Usuario>> GetAllTareasByTablero(int id){
-        var usuarios = tareaRepository.GetAllTareasByTablero(id);
-        return Ok(usuarios);
+        var tareas = tareaRepository.GetAllTareas().Where(t => t.IdTablero==id);
+        return Ok(tareas);
     }
 
 }
