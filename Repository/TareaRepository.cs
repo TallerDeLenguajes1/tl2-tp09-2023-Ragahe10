@@ -62,7 +62,11 @@ public class TareaRepository : ITareaRepository{
                     tarea.Estado = (EstadoTarea)Convert.ToInt32(reader["estado"]);
                     tarea.Descripcion = reader["descripcion"].ToString();
                     tarea.Color = reader["color"].ToString();
-                    tarea.IdUsuarioAsignado = Convert.ToInt32(reader["id_usuario_asignado"]);
+                    if(reader["id_usuario_asignado"]==DBNull.Value){
+                        tarea.IdUsuarioAsignado = 0;
+                    }else{
+                        tarea.IdUsuarioAsignado = (int)reader["id_usuario_asignado"];
+                    }
                 }
             }
             connection.Close();

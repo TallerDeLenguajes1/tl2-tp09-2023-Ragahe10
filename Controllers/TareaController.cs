@@ -18,9 +18,13 @@ public class TareaController : ControllerBase
         tareaRepository.AddTarea(tarea);
         return Ok();
     }
-    [HttpPut ("{id}")]
-    public ActionResult UpdateTarea(int id, Tarea tarea){
-        tareaRepository.UpdateTarea(id,tarea);
+    [HttpPut ("{id}/Nombre/{Nombre}")]
+    public ActionResult UpdateTarea(int id, string Nombre){
+        var tarea = tareaRepository.GetAllTareas().FirstOrDefault(t => t.Id ==id);
+        if(tarea != null){
+            tarea.Nombre = Nombre;
+            tareaRepository.UpdateTarea(id,tarea);
+        }
         return Ok();
     }
     [HttpPut ("{id}/Estado/{estado}")]
