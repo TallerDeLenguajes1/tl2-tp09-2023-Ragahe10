@@ -19,7 +19,7 @@ public class TareaController : ControllerBase
         return Ok();
     }
     [HttpPut ("{id}")]
-    public ActionResult UpdateUSuario(int id, Tarea tarea){
+    public ActionResult UpdateTarea(int id, Tarea tarea){
         tareaRepository.UpdateTarea(id,tarea);
         return Ok();
     }
